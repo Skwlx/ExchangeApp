@@ -1,0 +1,25 @@
+{
+  "name": "exchangeapp",
+  "version": "1.0.0",
+  "description": "App made with api to check the latest currency rate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skwlx/ExchangeApp.git"
+  },
+  "keywords": [
+    "exchange",
+    "money",
+    "currency",
+    "rate"
+  ],
+  "author": "Skwlx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skwlx/ExchangeApp/issues"
+  },
+  "homepage": "https://github.com/Skwlx/ExchangeApp#readme"
+}
