@@ -1,33 +1,33 @@
 class Exchange {
     constructor(){
         this.form = document.querySelector(".exchange__content__form");
-        this.input = document.querySelector(".exchange__content__form-input");
-        this.select = document.querySelectorAll(".exchange__content__form-data");
+        this.input = document.querySelector(".amount-one");
+        this.output = document.querySelector(".amount-two");
+        this.firstCurrency = document.querySelector(".currency-one");
+        this.secondCurrency = document.querySelector(".currency-two");
     }
-    getData(){
-        fetch('https://api.exchangeratesapi.io/latest')
+    getData(currency, currency2){
+        fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)
         .then((resp) => resp.json())
-        .then((data) => {return data})
+        .then(data => {
+            const rate = data.rates[currency2];
+            this.output.value = (this.input.value * rate).toFixed(2);
+        })
         .catch((err) => console.log(err));
-        return result;
     }
-    // displayData(data){
-    //     for (let [key] of Object.entries(data.rates)) {
-    //         let optionBox = document.createElement("option");
-    //         let optionBox2 = document.createElement("option");
-    //         optionBox.textContent = key;
-    //         optionBox2.textContent = key;
-    //         optionBox.value = key;
-    //         optionBox2.value = key;
-    //         this.select[0].appendChild(optionBox);
-    //         this.select[1].appendChild(optionBox2);
-    //       }
-    // }
-    calculate(data){
-
+    calculate(val, val2){
+        this.getData(val, val2);
     }
     init(){
-        this.displayData(this.getData());
+        this.firstCurrency.addEventListener('change',(e)=>{
+            this.calculate(this.firstCurrency.value, this.secondCurrency.value)
+        });
+        this.secondCurrency.addEventListener('change', (e)=>{
+            this.calculate(this.firstCurrency.value, this.secondCurrency.value)
+        });
+        this.input.addEventListener('input', (e)=>{
+            this.calculate(this.firstCurrency.value, this.secondCurrency.value)
+        });
     }
 }
 
