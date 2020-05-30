@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "6a57b713b43e025a2a42";
+/******/ 	var hotCurrentHash = "064b290e98e8e830a60f";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -867,7 +867,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nclass Exchange {\n    constructor(){\n        this.form = document.querySelector(\".exchange__content__form\");\n        this.input = document.querySelector(\".amount-one\");\n        this.output = document.querySelector(\".amount-two\");\n        this.firstCurrency = document.querySelector(\".currency-one\");\n        this.secondCurrency = document.querySelector(\".currency-two\");\n    }\n    getData(currency, currency2){\n        fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)\n        .then((resp) => resp.json())\n        .then(data => {\n            const rate = data.rates[currency2];\n            this.output.value = (this.input.value * rate).toFixed(2);\n        })\n        .catch((err) => console.log(err));\n    }\n    calculate(val, val2){\n        this.getData(val, val2);\n    }\n    init(){\n        this.firstCurrency.addEventListener('change', this.calculate(this.firstCurrency.value, this.secondCurrency.value));\n        this.secondCurrency.addEventListener('change', this.calculate(this.firstCurrency.value, this.secondCurrency.value));\n        this.input.addEventListener('input', this.calculate(this.firstCurrency.value, this.secondCurrency.value));\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Exchange);\n\n//# sourceURL=webpack:///./src/js/components/exchange.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nclass Exchange {\n    constructor(){\n        this.form = document.querySelector(\".exchange__content__form\");\n        this.input = document.querySelector(\".amount-one\");\n        this.output = document.querySelector(\".amount-two\");\n        this.firstCurrency = document.querySelector(\".currency-one\");\n        this.secondCurrency = document.querySelector(\".currency-two\");\n        this.errorMessage = document.querySelector(\".exchange__content__form__error-box__message\");\n    }\n    getData(currency, currency2){\n        fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)\n        .then((resp) => resp.json())\n        .then(data => {\n            const rate = data.rates[currency2];\n            this.output.value = (this.input.value * rate).toFixed(2);\n        })\n        .catch((err) =>{\n            this.errorMessage.textContent = \"Nieudało się połączyć z serwerem\";\n        });\n    }\n    calculate(val, val2){\n        this.getData(val, val2);\n    }\n    init(){\n        this.firstCurrency.addEventListener('change',(e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n        this.secondCurrency.addEventListener('change', (e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n        this.input.addEventListener('input', (e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Exchange);\n\n//# sourceURL=webpack:///./src/js/components/exchange.js?");
 
 /***/ }),
 
