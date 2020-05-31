@@ -7,12 +7,14 @@ class Exchange {
         this.secondCurrency = document.querySelector(".currency-two");
         this.errorMessage = document.querySelector(".exchange__content__form__error-box__message");
         this.reverseButton = document.querySelector(".exchange__content__button");
+        this.rateVal = document.querySelector(".rate");
     }
     getData(currency, currency2){
         fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)
         .then((resp) => resp.json())
         .then(data => {
             const rate = data.rates[currency2];
+            this.rateVal.innerHTML = `1 ${currency} = ${rate.toFixed(3)} ${currency2}`;
             this.output.value = (this.input.value * rate).toFixed(2);
         })
         .catch((err) =>{

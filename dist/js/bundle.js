@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "064b290e98e8e830a60f";
+/******/ 	var hotCurrentHash = "463f9651b261f0788c27";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -867,7 +867,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nclass Exchange {\n    constructor(){\n        this.form = document.querySelector(\".exchange__content__form\");\n        this.input = document.querySelector(\".amount-one\");\n        this.output = document.querySelector(\".amount-two\");\n        this.firstCurrency = document.querySelector(\".currency-one\");\n        this.secondCurrency = document.querySelector(\".currency-two\");\n        this.errorMessage = document.querySelector(\".exchange__content__form__error-box__message\");\n    }\n    getData(currency, currency2){\n        fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)\n        .then((resp) => resp.json())\n        .then(data => {\n            const rate = data.rates[currency2];\n            this.output.value = (this.input.value * rate).toFixed(2);\n        })\n        .catch((err) =>{\n            this.errorMessage.textContent = \"Nieudało się połączyć z serwerem\";\n        });\n    }\n    calculate(val, val2){\n        this.getData(val, val2);\n    }\n    init(){\n        this.firstCurrency.addEventListener('change',(e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n        this.secondCurrency.addEventListener('change', (e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n        this.input.addEventListener('input', (e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Exchange);\n\n//# sourceURL=webpack:///./src/js/components/exchange.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nclass Exchange {\n    constructor(){\n        this.form = document.querySelector(\".exchange__content__form\");\n        this.input = document.querySelector(\".amount-one\");\n        this.output = document.querySelector(\".amount-two\");\n        this.firstCurrency = document.querySelector(\".currency-one\");\n        this.secondCurrency = document.querySelector(\".currency-two\");\n        this.errorMessage = document.querySelector(\".exchange__content__form__error-box__message\");\n        this.reverseButton = document.querySelector(\".exchange__content__button\");\n    }\n    getData(currency, currency2){\n        fetch(`https://api.exchangeratesapi.io/latest?base=${currency}`)\n        .then((resp) => resp.json())\n        .then(data => {\n            const rate = data.rates[currency2];\n            this.output.value = (this.input.value * rate).toFixed(2);\n        })\n        .catch((err) =>{\n            this.errorMessage.textContent = \"Couldn't connect to the server\";\n        });\n    }\n    reverse(){\n        let tmp = this.input.value;\n        this.input.value = this.output.value;\n        this.output.value = tmp;\n        tmp = 0;\n        tmp = this.firstCurrency.value;\n        this.firstCurrency.value = this.secondCurrency.value;\n        this.secondCurrency.value = tmp;\n        this.calculate(this.firstCurrency.value, this.secondCurrency.value);\n    }\n    calculate(val, val2){\n        this.errorMessage.textContent = \"\";\n        if(isNaN(this.input.value))\n            this.errorMessage.textContent = \"Inserted value isn't numeric\";\n        if(val == val2)\n            this.errorMessage.textContent = \"Currency are the same\";\n        this.getData(val, val2);\n    }\n    init(){\n        this.firstCurrency.addEventListener('change',(e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n        this.secondCurrency.addEventListener('change', (e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n        this.input.addEventListener('input', (e)=>{\n            this.calculate(this.firstCurrency.value, this.secondCurrency.value)\n        });\n        this.reverseButton.addEventListener('click', (e)=>{\n            this.reverse();\n        })\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Exchange);\n\n//# sourceURL=webpack:///./src/js/components/exchange.js?");
 
 /***/ }),
 
@@ -879,7 +879,18 @@ eval("__webpack_require__.r(__webpack_exports__);\nclass Exchange {\n    constru
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_exchange__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/exchange */ \"./src/js/components/exchange.js\");\n\n\nwindow.addEventListener('DOMContentLoaded', (event) => {\n    let currency = new _components_exchange__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n    currency.init();\n});\n\n//# sourceURL=webpack:///./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_exchange__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/exchange */ \"./src/js/components/exchange.js\");\n/* harmony import */ var _sass_index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../sass/index.scss */ \"./src/sass/index.scss\");\n/* harmony import */ var _sass_index_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_sass_index_scss__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nwindow.addEventListener('DOMContentLoaded', (event) => {\n    let currency = new _components_exchange__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n    currency.init();\n});\n\n//# sourceURL=webpack:///./src/js/index.js?");
+
+/***/ }),
+
+/***/ "./src/sass/index.scss":
+/*!*****************************!*\
+  !*** ./src/sass/index.scss ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/sass/index.scss?");
 
 /***/ })
 
