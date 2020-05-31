@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ExchangeApp</title>
-<link href="/styles/main.css" rel="stylesheet"></head>
+<link href="/styles/styles.css" rel="stylesheet"></head>
 <body>
     <main>  
         <div class="exchange">
             <div class="exchange__content">
-                <h1>Exchange Rate Calculator</h1>
+                <h1 class="exchange__content__header">$ Exchange Rate Calculator €</h1>
                 <form class="exchange__content__form">
                     <div class="exchange__content__form__data-container">
                         <input class="exchange__content__form-input amount-one" type="number"></input>
@@ -51,7 +51,7 @@
                         </select>
                     </div>
                     <div class="exchange__content__form__data-container">
-                    <input class="exchange__content__form-input amount-two" type="number"></input>
+                    <input class="exchange__content__form-input amount-two"></input>
                     <select class="exchange__content__form-data currency-two">
                             <option value="AUD">AUD</option>
                             <option value="BGN">BGN</option>
@@ -92,9 +92,10 @@
                         <p class="exchange__content__form__error-box__message"></p>
                     </div>
                 </form>
+                <p class="rate">Currency rate</p>
                 <button class="exchange__content__button">REVERSE</button>
             </div>
         </div>
     </main>
-<script type="text/javascript" src="/js/bundle.js"></script></body>
+<script type="text/javascript" src="/js/script.js"></script></body>
 </html>
