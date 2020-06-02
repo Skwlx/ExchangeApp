@@ -31,10 +31,6 @@ button {
   color: inherit;
   line-height: normal; }
 
-@media only screen and (max-width: 660px) {
-  .exchange {
-    padding: 10px; } }
-
 .exchange {
   margin-bottom: 100px;
   border: 4px solid #00cd00;
@@ -86,4 +82,10 @@ button {
 .rate {
   color: #00b300;
   font-weight: bold; }
+
+@media (max-width: 660px) {
+  html {
+    font-size: 0.9rem; }
+  .exchange {
+    padding: 90px 5px; } }
 
